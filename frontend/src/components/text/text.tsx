@@ -3,7 +3,7 @@ import styles from './text.module.css';
 import cn from 'classnames';
 import { JSX } from 'react';
 
-const Text = ({ size = 'medium', children }: TextProps): JSX.Element => {
+const Text = ({ size = 'medium', children, ...props }: TextProps): JSX.Element => {
 	return (
 		<p
 			className={cn(styles.p, {
@@ -11,6 +11,7 @@ const Text = ({ size = 'medium', children }: TextProps): JSX.Element => {
 				[styles.m]: size === 'medium',
 				[styles.l]: size == 'large',
 			})}
+			{...props}
 		>
 			{children}
 		</p>

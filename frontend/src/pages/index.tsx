@@ -1,14 +1,30 @@
-import Heading from "../components/heading/heading";
-import Tag from "../components/tag/tag";
-import Text from "../components/text/text";
-
+import { useState } from 'react';
+import { Button, Heading, Tag, Text } from '../components';
 
 const Index = () => {
-	return <div>
-		<Heading tag="h1">Welcome to the IT Education Platform</Heading>
-		<Text size="small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, dolorum!</Text>
-		<Tag size="small" color="danger">500</Tag>
-	</div>
+	const [isClick, setIsClick] = useState(false);
+
+	return (
+		<div>
+			<Heading tag='h2'>Heading</Heading>
+			<Text size='small'>Text</Text>
+			<Tag size='small' color='danger'>
+				Red
+			</Tag>
+			<Tag size='medium' color='success'>
+				Green
+			</Tag>
+			<br />
+			<Button appearance='primary'>Primary</Button>
+			<Button appearance='ghost'>Ghost</Button>
+			<Button appearance='ghost' arrow={isClick ? 'down' : 'right'} onClick={() => setIsClick(prev => !prev)}>
+				Arrow
+			</Button>
+			<Button appearance='primary' arrow='down'>
+				Down
+			</Button>
+		</div>
+	);
 };
 
 export default Index;
