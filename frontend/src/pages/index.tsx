@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Button, Heading, Input, Tag, Text, TextArea } from '../components';
+import { Button, Card, Heading, Input, Rating, Tag, Text, TextArea } from '../components';
 
 const Index = () => {
 	const [isClick, setIsClick] = useState(false);
+	const [rating, setRating] = useState<number>(3);
 
 	return (
 		<div>
@@ -28,6 +29,15 @@ const Index = () => {
 			<div>
 				<TextArea placeholder='Message' />
 			</div>
+			<Rating rating={rating} isEditable={true} setRating={setRating} />
+			<Card color='white' style={{ marginTop: '30px' }}>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum sunt delectus ipsum accusantium. Quaerat necessitatibus
+				laborum cum quis veniam. Eveniet?
+			</Card>
+			<Card color='primary' style={{ marginTop: '30px' }}>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum sunt delectus ipsum accusantium. Quaerat necessitatibus
+				laborum cum quis veniam. Eveniet?
+			</Card>
 		</div>
 	);
 };
