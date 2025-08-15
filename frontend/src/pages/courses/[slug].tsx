@@ -1,10 +1,9 @@
-import { MenuItem } from '@/src/interfaces/menu.interface';
-import { PageModel } from '@/src/interfaces/page.interface';
-import { ProductModel } from '@/src/interfaces/product.interface';
-import { withLayout } from '@/src/layout/layout';
-import axios from 'axios';
 import { GetServerSideProps } from 'next';
-import React from 'react'
+import { withLayout } from '../../layout/layout';
+import axios from 'axios';
+import { MenuItem } from '../../interfaces/menu.interface';
+import { PageModel } from '../../interfaces/page.interface';
+import { ProductModel } from '../../interfaces/product.interface';
 
 const Index = ({ menu, page, products }: PageProps) => {
 	return <div>{products.length}</div>;
