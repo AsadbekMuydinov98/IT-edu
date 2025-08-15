@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { JSX, useContext } from 'react';
+import { firstLevelMenu } from '../../helpers/constants';
 import styles from './menu.module.css';
 import cn from 'classnames';
 import { IFirstLevelMenu, PageItem } from '../../interfaces/menu.interface';
-import { PageModel } from '../../interfaces/page.interface';
 import { useRouter } from 'next/router';
-import { firstLevelMenu } from '@/src/helpers/constants';
 import { AppContext } from '@/src/context/app.context';
 
 const Menu = (): JSX.Element => {
@@ -19,6 +18,7 @@ const Menu = (): JSX.Element => {
 					if (c._id.secondCategory === category) {
 						c.isOpened = !c.isOpened;
 					}
+
 					return c;
 				})
 			);
@@ -80,9 +80,9 @@ const Menu = (): JSX.Element => {
 		return pages.map(p => (
 			<Link
 				key={p._id}
-				href={`/${rotue}/${p.alias}`}
+				href={`/${rotue}/${p._id}`}
 				className={cn(styles.thirdLevel, {
-					[styles.thirdLevelActive]: `/${rotue}/${p.alias}` === router.asPath,
+					[styles.thirdLevelActive]: `/${rotue}/${p._id}` === router.asPath,
 				})}
 			>
 				{p.title}
