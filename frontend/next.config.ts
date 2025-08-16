@@ -25,27 +25,31 @@
 
 // next.config.mjs
 const nextConfig = {
-  reactStrictMode: true,
-  webpack(config) {
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
-    if (fileLoaderRule) fileLoaderRule.exclude = /\.svg$/i;
+	images: {
+		domains: ['media.graphassets.com'],
+		dangerouslyAllowSVG: true,
+	},
+	reactStrictMode: true,
+	webpack(config) {
+		const fileLoaderRule = config.module.rules.find(rule => rule.test?.test?.('.svg'));
+		if (fileLoaderRule) fileLoaderRule.exclude = /\.svg$/i;
 
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: [{ loader: '@svgr/webpack', options: { svgo: true, titleProp: true } }],
-    });
+		config.module.rules.push({
+			test: /\.svg$/i,
+			issuer: /\.[jt]sx?$/,
+			use: [{ loader: '@svgr/webpack', options: { svgo: true, titleProp: true } }],
+		});
 
-    return config;
-  },
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
-  },
+		return config;
+	},
+	turbopack: {
+		rules: {
+			'*.svg': {
+				loaders: ['@svgr/webpack'],
+				as: '*.js',
+			},
+		},
+	},
 };
 
 export default nextConfig;
