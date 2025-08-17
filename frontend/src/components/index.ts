@@ -12,3 +12,4 @@ export { default as Advantages } from './advantages/advantages';
 export { default as Product } from './product/product';
 export { default as ReviewForm } from './reivew-form/reivew-form';
 export { default as Search } from './search/search';
+export { default as Sort } from './sort/sort';
