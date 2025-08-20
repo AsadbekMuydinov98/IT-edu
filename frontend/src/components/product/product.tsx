@@ -21,6 +21,17 @@ const Product = motion(
 		const [reviewOpen, setReviewOpen] = useState<boolean>(false);
 		const reviewRef = useRef<HTMLDivElement>(null);
 
+		const variants = {
+			visible: {
+				opacity: 1,
+				height: 'auto',
+			},
+			hidden: {
+				opacity: 0,
+				height: 0,
+			},
+		};
+
 		const scrollToReview = () => {
 			setReviewOpen(true);
 			reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -48,11 +59,12 @@ const Product = motion(
 						<Rating rating={product.initialRating} />
 					</div>
 					<div className={styles.tags}>
-						{product.tags.map(t => (
-							<Tag key={t} className={styles.category} color={'primary'}>
-								{t}
-							</Tag>
-						))}
+						{product.tags.length &&
+							product.tags.map(t => (
+								<Tag key={t} className={styles.category} color={'primary'}>
+									{t}
+								</Tag>
+							))}
 					</div>
 					<div className={styles.priceTitle}>Price</div>
 					<div className={styles.creditTitle}>Credit</div>
@@ -67,13 +79,14 @@ const Product = motion(
 					<div className={styles.description}>{product.description}</div>
 
 					<div className={styles.features}>
-						{product.characteristics.map(ch => (
-							<div className={styles.characteristic} key={ch.name}>
-								<span className={styles.characteristicName}>{ch.name}</span>
-								<span className={styles.characteristicDots}></span>
-								<span className={styles.characteristicValue}>{ch.value}</span>
-							</div>
-						))}
+						{product.characteristics.length &&
+							product.characteristics.map(ch => (
+								<div className={styles.characteristic} key={ch.name}>
+									<span className={styles.characteristicName}>{ch.name}</span>
+									<span className={styles.characteristicDots}></span>
+									<span className={styles.characteristicValue}>{ch.value}</span>
+								</div>
+							))}
 					</div>
 
 					<div className={styles.advBlock}>
@@ -106,22 +119,17 @@ const Product = motion(
 					</div>
 				</Card>
 
-				<Card
-					color='white'
-					ref={reviewRef}
-					className={cn(styles.review, {
-						[styles.opened]: reviewOpen,
-						[styles.closed]: !reviewOpen,
-					})}
-				>
-					{product.reviews.map(r => (
-						<div key={r._id}>
-							<Review review={r} />
-							<Divider />
-						</div>
-					))}
-					<ReivewForm productid={product._id} />
-				</Card>
+				<motion.div animate={reviewOpen ? 'visible' : 'hidden'} variants={variants} initial={'hidden'}>
+					<Card color='white' ref={reviewRef} className={cn(styles.reviews)}>
+						{product.reviews.map(r => (
+							<div key={r._id}>
+								<Review review={r} />
+								<Divider />
+							</div>
+						))}
+						<ReivewForm productid={product._id} />
+					</Card>
+				</motion.div>
 			</div>
 		);
 	})

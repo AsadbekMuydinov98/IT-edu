@@ -42,7 +42,8 @@
 
 .hr,
 .description,
-.actions {
+.actions,
+.hr2 {
 	grid-column: start / end;
 }
 
@@ -132,6 +133,11 @@
 
 .reviewBtn {
 	margin-left: 15px;
+}
+
+.reviews {
+	overflow: hidden;
+	padding: 30px;
 }
 
 .opened {
